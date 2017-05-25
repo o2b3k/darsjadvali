@@ -47,7 +47,7 @@ public class SubjectController {
     }
     /*----------- Create new Subject ------------------*/
     @RequestMapping(value = "/subject",method = RequestMethod.POST)
-    public ResponseEntity<?> createSubject(Subject subject, UriComponentsBuilder builder){
+    public ResponseEntity<?> createSubject(@RequestBody Subject subject, UriComponentsBuilder builder){
         subjectService.saveSubject(subject);
         HttpHeaders headers =   new HttpHeaders();
         headers.setLocation(builder.path("/api/subject/{id}").buildAndExpand(subject.getId()).toUri());
@@ -56,7 +56,7 @@ public class SubjectController {
 
     /*------------Update subject -------------*/
     @RequestMapping(value = "/subject/{id}",method = RequestMethod.PUT)
-    public ResponseEntity<?> updateSubject(@PathVariable("id") Long id, Subject subject){
+    public ResponseEntity<?> updateSubject(@PathVariable("id") Long id,@RequestBody Subject subject){
         Subject currentSubject = subjectService.getById(id);
         if (currentSubject == null){
             return new ResponseEntity(new CustomErrorType("Unable to update. Subject with id " + id + " not found."),
