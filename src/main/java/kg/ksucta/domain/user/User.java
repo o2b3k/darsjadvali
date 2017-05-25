@@ -1,9 +1,12 @@
 package kg.ksucta.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import kg.ksucta.domain.Message;
 import kg.ksucta.domain.embeddable.Dates;
 import org.hibernate.validator.constraints.Email;
 
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -30,6 +33,10 @@ public class User {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private List<UserRole> roles;
+
+    @OneToMany(mappedBy = "message")
+    @JsonBackReference
+    private Set<Message> messages;
 
     public User() { }
 

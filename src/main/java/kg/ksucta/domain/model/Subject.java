@@ -1,6 +1,10 @@
 package kg.ksucta.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import kg.ksucta.domain.Message;
+
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by o2b3k on 4/22/17.
@@ -9,7 +13,7 @@ import javax.persistence.*;
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "time")
     private String time;
@@ -20,21 +24,25 @@ public class Subject {
     @Column(name = "room")
     private String room;
 
-    @Column(name = "day_of_weeks")
-    private String day_of_weeks;
+    @Column(name = "day")
+    private String day;
 
     @Column(name = "active")
-    private boolean active;
+    private Integer active;
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "comment")
+    @JsonBackReference
+    private Set<Message> comment;
 
     public Subject(){
 
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -62,19 +70,27 @@ public class Subject {
         this.room = room;
     }
 
-    public String getDay_of_weeks() {
-        return day_of_weeks;
+    public String getDay() {
+        return day;
     }
 
-    public void setDay_of_weeks(String day_of_weeks) {
-        this.day_of_weeks = day_of_weeks;
+    public void setDay(String day) {
+        this.day = day;
     }
 
-    public boolean isActive() {
+    public Integer getActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Integer active) {
         this.active = active;
+    }
+
+    public Set<Message> getComment() {
+        return comment;
+    }
+
+    public void setComment(Set<Message> comment) {
+        this.comment = comment;
     }
 }
