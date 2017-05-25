@@ -14,7 +14,7 @@ import java.util.List;
  * Created by o2b3k on 5/23/17.
  */
 @RestController
-@RequestMapping("/message")
+@RequestMapping("/api")
 public class MessageController {
     @Autowired
     MessageService messageService;
@@ -23,7 +23,7 @@ public class MessageController {
         this.messageService = messageService;
     }
 
-    @RequestMapping(value = "/message/{s_id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/message/{subject_id}",method = RequestMethod.GET)
     public List<Message> getById(@PathVariable("subject_id") Long id){
         List<Message> messageList = (List<Message>) messageService.getById(id);
         return messageList;

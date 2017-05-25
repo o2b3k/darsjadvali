@@ -14,7 +14,7 @@ import java.util.List;
  * Created by o2b3k on 5/23/17.
  */
 @RestController
-@RequestMapping("/subject")
+@RequestMapping("/api")
 public class SubjectController {
     @Autowired
     SubjectService subjectService;
