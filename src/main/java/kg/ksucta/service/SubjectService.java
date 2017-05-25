@@ -12,7 +12,8 @@ import java.util.List;
 public interface SubjectService {
     List<Subject> getByName(String lesson);
     List<Subject> getByDay(String day);
-    Subject findById(Long id);
+    List<Subject> findAllSubjects();
+    Subject getById(Long id);
 
     void saveSubject(Subject subject);
     void updateSubject(Subject subject);

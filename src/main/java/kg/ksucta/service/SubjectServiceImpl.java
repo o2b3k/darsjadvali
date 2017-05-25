@@ -44,7 +44,12 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public Subject findById(Long id) {
+    public List<Subject> findAllSubjects() {
+        return subjectRepository.findAll();
+    }
+
+    @Override
+    public Subject getById(Long id) {
         for (Subject subject : subjects){
             if (subject.getId() == id){
                 return subject;
@@ -58,6 +63,7 @@ public class SubjectServiceImpl implements SubjectService {
     public void saveSubject(Subject subject) {
         subject.setId(counter.incrementAndGet());
         subjects.add(subject);
+        subjectRepository.save(subject);
     }
 
     @Override
@@ -71,8 +77,10 @@ public class SubjectServiceImpl implements SubjectService {
         for (Iterator<Subject> iterator = subjects.iterator();iterator.hasNext();){
             Subject subject = iterator.next();
             if (subject.getId() == id){
-                iterator.remove();
+                subjectRepository.delete(id);
             }
         }
     }
+
+
 }
