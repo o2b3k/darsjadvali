@@ -70,6 +70,7 @@ public class SubjectController {
         subjectService.updateSubject(currentSubject);
         return new ResponseEntity<Subject>(currentSubject,HttpStatus.OK);
     }
+
     /*------------ Delete subject -----------------*/
     @RequestMapping(value = "/subject/{id}",method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteSubject(@PathVariable("id") Long id){

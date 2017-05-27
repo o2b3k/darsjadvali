@@ -10,4 +10,9 @@ import java.util.List;
 public interface MessageService {
     Message getById(Long id);
     Message getBySubjectId(Long id);
+    List<Message> listAllMessages();
+    void saveMessage(Message message);
+    void updateMessage(Message message);
+    void deleteMessage(Long id);
+
 }
